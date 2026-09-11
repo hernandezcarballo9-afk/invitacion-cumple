@@ -180,8 +180,8 @@ img{display:block;max-width:100%}
   Cuando tengas un Web App de Google Apps Script, pega su URL aquí.
   Ejemplo: https://script.google.com/macros/s/AKfy.../exec
 */
-const GOOGLE_APPS_SCRIPT_URL = '';
-
+const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyku88FSglykBvzuVmurgL-Gw12UuZwerJC9p6koC9A31Rk3fG_fJwtzQkxEKaiOATm/exec';
+  
 const intro = document.getElementById('intro');
 
 document.getElementById('openInvitation').addEventListener('click', () => {
@@ -198,28 +198,51 @@ document.getElementById('rsvpOpen').addEventListener('click',()=>modal.classList
 document.getElementById('rsvpClose').addEventListener('click',()=>modal.classList.remove('open'));
 modal.addEventListener('click',(e)=>{if(e.target===modal)modal.classList.remove('open')});
 
-document.getElementById('rsvpForm').addEventListener('submit', async (e)=>{
+document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const data = Object.fromEntries(new FormData(e.target).entries());
-  data.fechaRegistro = new Date().toISOString();
-  try{
-    if(GOOGLE_APPS_SCRIPT_URL){
-      await fetch(GOOGLE_APPS_SCRIPT_URL,{
-        method:'POST',
-        mode:'no-cors',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify(data)
-      });
-    }else{
-      const saved = JSON.parse(localStorage.getItem('yess_rsvp')||'[]');
-      saved.push(data);
-      localStorage.setItem('yess_rsvp',JSON.stringify(saved));
-    }
-    document.getElementById('rsvpFormWrap').style.display='none';
-    document.getElementById('rsvpSuccess').style.display='block';
-    setTimeout(()=>modal.classList.remove('open'),2200);
-  }catch(err){
+
+  const formulario = e.target;
+  const boton = formulario.querySelector('button[type="submit"]');
+
+  const datos = new URLSearchParams();
+
+  datos.append(
+    'nombre',
+    document.getElementById('guestName').value.trim()
+  );
+
+  datos.append(
+    'asistencia',
+    document.getElementById('attendance').value
+  );
+
+  boton.disabled = true;
+  boton.textContent = 'Enviando...';
+
+  try {
+    await fetch(GOOGLE_APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: datos
+    });
+
+    document.getElementById('rsvpFormWrap').style.display = 'none';
+    document.getElementById('rsvpSuccess').style.display = 'block';
+
+    formulario.reset();
+
+    setTimeout(() => {
+      modal.classList.remove('open');
+      document.getElementById('rsvpFormWrap').style.display = 'block';
+      document.getElementById('rsvpSuccess').style.display = 'none';
+    }, 2500);
+
+  } catch (error) {
     alert('No se pudo registrar la respuesta. Intenta nuevamente.');
+
+  } finally {
+    boton.disabled = false;
+    boton.textContent = 'Enviar';
   }
 });
 </script>
