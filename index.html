@@ -30,17 +30,16 @@ img{display:block;max-width:100%}
 .section.three{
   height:720px;
 }
-
 .script-title{
   font-family:'Euphoria Script',cursive;
   font-weight:700;
-  color:#8b5f96;
-  line-height:0.9;
+  color:var(--lavender);
+  line-height:1.05;
   text-align:center;
-  -webkit-text-stroke:1px #ffffff;
+  -webkit-text-stroke:2px white;
   text-shadow:
-    0 2px 3px rgba(75,45,85,.30),
-    0 0 2px rgba(255,255,255,.9);
+    0 0 1px white,
+    0 2px 0 white;
 }
 .outline-soft{text-shadow:0 0 2px #fff,1px 1px 0 #fff,-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff}
 
@@ -57,30 +56,42 @@ img{display:block;max-width:100%}
 /* Sección 1 */
 .hero-name{
   position:absolute;
-  left:10% !important;
-  top:13% !important;
-  width:60% !important;
-  font-size:78px !important;
-  z-index:10;
-  color:#9a73b0 !important;
-  -webkit-text-stroke:1px #ffffff !important;
+  left:8% !important;
+  top:12% !important;
+  width:84% !important;
+
+  font-size:76px !important;
+  line-height:1 !important;
+  text-align:center !important;
+
+  color:#87549a !important;
+  -webkit-text-stroke:0 !important;
+
   text-shadow:
-    0 3px 6px rgba(90, 60, 105, 0.28),
-    0 0 2px rgba(255,255,255,0.9) !important;
+    0 2px 1px rgba(255,255,255,.8),
+    0 4px 7px rgba(80,45,90,.25) !important;
+
+  z-index:10;
 }
 
 .hero-bday{
   position:absolute;
-  left:18% !important;
-  top:25% !important;
-  width:72% !important;
-  font-size:78px !important;
-  z-index:10;
-  color:#9a73b0 !important;
-  -webkit-text-stroke:1px #ffffff !important;
+  left:8% !important;
+  top:30% !important;
+  width:84% !important;
+
+  font-size:76px !important;
+  line-height:1 !important;
+  text-align:center !important;
+
+  color:#87549a !important;
+  -webkit-text-stroke:0 !important;
+
   text-shadow:
-    0 3px 6px rgba(90, 60, 105, 0.28),
-    0 0 2px rgba(255,255,255,0.9) !important;
+    0 2px 1px rgba(255,255,255,.8),
+    0 4px 7px rgba(80,45,90,.25) !important;
+
+  z-index:10;
 }
 .hero-date{position:absolute;left:18%;top:48%;width:70%;font-size:18px;font-weight:700;line-height:1.4;white-space:pre-line;z-index:12}
 .hero-photo{position:absolute;left:52.6%;top:51.2%;width:35.8%;height:41.8%;object-fit:cover;clip-path:polygon(22% 0,100% 0,78% 100%,0 100%);box-shadow:var(--shadow);z-index:8}
@@ -158,7 +169,7 @@ img{display:block;max-width:100%}
 
 @media(max-width:399px){
   .shell{transform-origin:top center}
-  .hero-name,.hero-bday{font-size:15vw}
+  .hero-name,.hero-bday{font-size:74px}
   .s2-goodbye,.s3-title,.rsvp-title{font-size:10vw}
   .s2-welcome{font-size:11vw}
 }
