@@ -183,11 +183,10 @@ img{display:block;max-width:100%}
 const GOOGLE_APPS_SCRIPT_URL = '';
 
 const intro = document.getElementById('intro');
-document.getElementById('openInvitation').addEventListener('click',()=>{
+
+document.getElementById('openInvitation').addEventListener('click', () => {
   intro.classList.add('hidden');
-  sessionStorage.setItem('invitationOpened','1');
 });
-if(sessionStorage.getItem('invitationOpened')==='1') intro.classList.add('hidden');
 
 const observer = new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('show'); });
